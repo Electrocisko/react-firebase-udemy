@@ -1,9 +1,15 @@
 import { useState } from "react";
 import {register} from '../config/firebase.js';
+import useRedirectActiveUser from '../hooks/useRedirectActiveUser.js';
+import { useUserContext } from "../context/UserContext.jsx";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPasword] = useState("");
+
+  const {user} = useUserContext();
+
+  useRedirectActiveUser(user,"/dashBoard");
 
   const handleEmail = (e) => {
     setEmail(e.target.value)
